@@ -22,7 +22,7 @@ var params = {
     TableName:table,
     Item:{
         "uid": uid,
-        "timestamp_reader_2": t
+        "timestamp_reader_2": Date.now()
     }
 };
 console.log("Adding a new item...");

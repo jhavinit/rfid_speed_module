@@ -1,5 +1,4 @@
 var AWS = require("aws-sdk");
-var moment = require('moment')
 AWS.config.update({
   region: "us-east-2",
     endpoint: "dynamodb.us-east-2.amazonaws.com",
@@ -20,14 +19,14 @@ docClient.get(params, function(err, data) {
     if (err) {
         console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
     } else {
-        console.log("GetItem succeeded:", JSON.stringify(data, null, 2));
+        //console.log("GetItem succeeded:", JSON.stringify(data, null,2));
         if(!(JSON.stringify(data, null, 2).length == 2)){
 	  var t1 = data["Item"]["timestamp_reader_1"];
 	  var t2 = data["Item"]["timestamp_reader_2"];
 	  var distance = 30;
-	  console.log("Speed : ",distance/(t2 - t1));
+	  console.log("speed : ", distance/(t2 - t1));
 	}
     }
- }
+ });
 }
 read_from_dynamodb(1);

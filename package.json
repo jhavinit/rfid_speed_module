@@ -1,0 +1,27 @@
+{
+  "name": "speed_module",
+  "version": "1.0.0",
+  "description": "Speed measurement using rfid\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[s",
+  "main": "calculate_speed.js",
+  "scripts": {
+    "test": "node caculate.js\u001b[D\u001b[D\u001b[D_speed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhavinit/rfid_speed_module.git"
+  },
+  "keywords": [
+    "rfid",
+    "speed",
+    "vinit"
+  ],
+  "author": "vinit jha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jhavinit/rfid_speed_module/issues"
+  },
+  "homepage": "https://github.com/jhavinit/rfid_speed_module#readme",
+  "dependencies": {
+    "aws-sdk": "^2.549.0"
+  }
+}
