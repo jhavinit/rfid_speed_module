@@ -1,7 +1,7 @@
 var net = require('net');
 var AWS = require("aws-sdk");
-var HOST = '192.168.1.190'; //change
-var PORT = 6000;	//change
+var HOST = '127.0.0.1';
+var PORT = 6000;
 var client = new net.Socket();
 
 AWS.config.update({
@@ -17,18 +17,19 @@ client.connect(PORT, HOST, function() {
   console.log('CONNECTED TO: ' + HOST + ':' + PORT);
 });
 
-function write_into_dynamodb(uid,t){
+function write_into_dynamodb(uid,t1){
 var params = {
     TableName:table,
     Item:{
         "uid": uid,
+        "timestamp_reader_1": t1,
         "timestamp_reader_2": Date.now()
     }
 };
 console.log("Adding a new item...");
 docClient.put(params, function(err, data) {
     if (err) {
-        console.error("Unable to add item. Error JSON:", 
+        console.error("Unable to add item. Error JSON:",
 JSON.stringify(err, null, 2));
     } else {
         console.log("Added item:", JSON.stringify(data, null, 2));
@@ -36,14 +37,30 @@ JSON.stringify(err, null, 2));
 });
 }
 
+function read_from_dynamodb(uid){
+var params = {
+    TableName: table,
+    Key:{
+        "uid": uid
+        }
+};
+docClient.get(params, function(err, data) {
+    if (err) {
+        console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
+    } else {
+        if(!(JSON.stringify(data, null, 2).length == 2)){
+          write_into_dynamodb('1',data["Item"]["timestamp_reader_1"]);
+        }
+    }
+ });
+}
+
 client.on('data', function(data) {
   console.log('DATA: ' + data);
-  //convert the data into hex() string
-  //read t'
-  write_into_dynamodb(1,t);
+  read_from_dynamodb('1');
+  client.destroy();
 });
 
-//client.destroy();
 client.on('close', function() {
   console.log('Connection closed');
 });
