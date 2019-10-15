@@ -1,4 +1,5 @@
 var AWS = require("aws-sdk");
+var moment = require('moment')
 AWS.config.update({
   region: "us-east-2",
     endpoint: "dynamodb.us-east-2.amazonaws.com",
