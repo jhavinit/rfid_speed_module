@@ -3,12 +3,11 @@ var AWS = require("aws-sdk");
 var HOST = '192.168.1.190';
 var PORT = 6000;
 var client = new net.Socket();
-
 AWS.config.update({
-    region: "*",
-    endpoint: "*",
-    accessKeyId: "*",
-    secretAccessKey: "*"
+  region: "us-east-2",
+    endpoint: "dynamodb.us-east-2.amazonaws.com",
+    accessKeyId: "AKIAJ2V62TAWOZ6MZE3Q",
+    secretAccessKey: "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"
 });
 var docClient = new AWS.DynamoDB.DocumentClient();
 var table = "speed_table";
