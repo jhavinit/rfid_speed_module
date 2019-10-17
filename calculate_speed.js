@@ -21,10 +21,18 @@ docClient.get(params, function(err, data) {
     } else {
         //console.log("GetItem succeeded:", JSON.stringify(data, null,2));
         if(!(JSON.stringify(data, null, 2).length == 2)){
-	  var t1 = data["Item"]["timestamp_reader_1"];
-	  var t2 = data["Item"]["timestamp_reader_2"];
-	  var distance = 30;
-	  console.log("speed : ", distance/(t2 - t1));
+	  var t1 = data["Item"]["timestamp_reader_1"]; //s
+	  var t2 = data["Item"]["timestamp_reader_2"]; //s
+	  var distance = 30; //km
+	  var speed_limit = 20; //kmph
+	  var time_diff = (t2-t1)/3600; //hr
+	  console.log("Speed(kmph): ", distance/time_diff);
+	  if((distance/time_diff) >= speed_limit){
+	  	console.log("Alert! Speed safe limit exceeded");
+	  }
+	 else{
+		console.log("Safe speed limit");
+	 }
 	}
     }
  });
